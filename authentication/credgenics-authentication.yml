@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/credgenics-recovery-openapi.yml
+docs: https://docs.credgenics.com/#getting-started
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  model: client-credentials-exchange
+schemes:
+- name: authenticationToken
+  type: apiKey
+  in: header
+  parameter: authenticationtoken
+  description: >-
+    Short-lived API token supplied in the `authenticationtoken` header on every
+    resource request. Obtained by exchanging client credentials at
+    POST /user/public/access-token.
+  sources:
+  - openapi/credgenics-recovery-openapi.yml
+flow:
+  token_endpoint: https://apiprod.credgenics.com/user/public/access-token
+  grant: client_credentials
+  request_fields: [client_id, client_secret, token_expiry_duration]
+  response_token_field: api_key
+  header: authenticationtoken
+  tenant_scoping:
+    parameter: company_id
+    location: query
+    required: true
+  token_expiry_default_seconds: 900
+  token_expiry_max_seconds: 86400
+  client_secret_validity: 6 months
