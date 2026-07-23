@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Credgenics Recovery Authentication Lending API
+  version: v1
+  description: REST API for the Credgenics debt collection and loan recovery platform. Lenders integrate loan, customer, payment and transaction data, and receive collections outcomes back. Authentication is a client-credentials exchange that returns a short-lived API token supplied in the `authenticationtoken` header; every resource request carries the tenant's `company_id` as a query parameter. This specification was generated faithfully from the public developer documentation at https://docs.credgenics.com/ — it captures the documented endpoints, headers and parameters only; request/response bodies are documented narratively and are represented here as open objects.
+  contact:
+    name: Credgenics Support
+    email: support@credgenics.com
+    url: https://docs.credgenics.com/
+  x-provenance:
+    generated: '2026-07-18'
+    method: generated
+    source: https://docs.credgenics.com/#getting-started
+servers:
+- url: https://apiprod.credgenics.com
+  description: Production
+security:
+- authenticationToken: []
+tags:
+- name: Lending
+  description: Loan and payment ingestion and retrieval.
+paths:
+  /recovery/v1/loans/{loan_id}:
+    get:
+      operationId: getLoan
+      tags:
+      - Lending
+      summary: Get loan details
+      description: Retrieve a loan by id, including applicant details, loan variables, allocation variables (outstanding, DPD, penalties), module-wise statuses, payments and tags.
+      parameters:
+      - $ref: '#/components/parameters/LoanId'
+      - $ref: '#/components/parameters/CompanyId'
+      - $ref: '#/components/parameters/AttributeLevels'
+      - $ref: '#/components/parameters/DataTypeConversion'
+      - $ref: '#/components/parameters/AuditInfo'
+      - $ref: '#/components/parameters/IdInfo'
+      responses:
+        '200':
+          description: Loan details.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recovery/v1/loan/{loan_id}:
+    post:
+      operationId: uploadLoan
+      tags:
+      - Lending
+      summary: Upload a loan
+      description: Upload new loan / EMI data for a loan id.
+      parameters:
+      - $ref: '#/components/parameters/LoanId'
+      - $ref: '#/components/parameters/CompanyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Loan created.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateLoan
+      tags:
+      - Lending
+      summary: Update a loan
+      description: Update loan details for a loan id.
+      parameters:
+      - $ref: '#/components/parameters/LoanId'
+      - $ref: '#/components/parameters/CompanyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Loan updated.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recovery/payments/{loan_id}:
+    patch:
+      operationId: updatePayment
+      tags:
+      - Lending
+      summary: Update payment information
+      description: Record a payment against a loan. Supports recovery-amount bifurcation across EMI, late fees and penalties via prefixed keys such as `recovered_expected_emi`, `recovered_late_fee` and `recovered_penalty`.
+      parameters:
+      - $ref: '#/components/parameters/LoanId'
+      - $ref: '#/components/parameters/CompanyId'
+      - name: allocation_month
+        in: query
+        required: false
+        description: Allocation month in "YYYY-M-01" format (e.g. "2025-11-01").
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Payment updated.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    AuditInfo:
+      name: audit_info
+      in: query
+      required: false
+      description: Include created/updated metadata.
+      schema:
+        type: boolean
+    LoanId:
+      name: loan_id
+      in: path
+      required: true
+      schema:
+        type: string
+    AttributeLevels:
+      name: attribute_levels
+      in: query
+      required: true
+      description: Controls which data sections are returned.
+      schema:
+        type: string
+    CompanyId:
+      name: company_id
+      in: query
+      required: true
+      description: Tenant company identifier, required on every resource request.
+      schema:
+        type: string
+    IdInfo:
+      name: id_info
+      in: query
+      required: false
+      description: Include internal system identifiers.
+      schema:
+        type: boolean
+    DataTypeConversion:
+      name: data_type_conversion
+      in: query
+      required: false
+      description: Convert values to proper types (boolean/int/float).
+      schema:
+        type: boolean
+  schemas:
+    Error:
+      type: object
+      description: Credgenics error envelope. Validation errors carry field-level messages under output.errors.
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+        output:
+          type: object
+          properties:
+            errors:
+              type: object
+              additionalProperties:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication failure (session expired or invalid credentials).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Route or resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authenticationToken:
+      type: apiKey
+      in: header
+      name: authenticationtoken
+      description: Short-lived API token obtained from POST /user/public/access-token. Supplied on every resource request.

@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: Credgenics Recovery Authentication Credit Line API
+  version: v1
+  description: REST API for the Credgenics debt collection and loan recovery platform. Lenders integrate loan, customer, payment and transaction data, and receive collections outcomes back. Authentication is a client-credentials exchange that returns a short-lived API token supplied in the `authenticationtoken` header; every resource request carries the tenant's `company_id` as a query parameter. This specification was generated faithfully from the public developer documentation at https://docs.credgenics.com/ — it captures the documented endpoints, headers and parameters only; request/response bodies are documented narratively and are represented here as open objects.
+  contact:
+    name: Credgenics Support
+    email: support@credgenics.com
+    url: https://docs.credgenics.com/
+  x-provenance:
+    generated: '2026-07-18'
+    method: generated
+    source: https://docs.credgenics.com/#getting-started
+servers:
+- url: https://apiprod.credgenics.com
+  description: Production
+security:
+- authenticationToken: []
+tags:
+- name: Credit Line
+  description: Customer and transaction ingestion for credit-line products.
+paths:
+  /recovery/v1/customers/{customer_id}:
+    get:
+      operationId: getCustomer
+      tags:
+      - Credit Line
+      summary: Get customer details
+      description: Retrieve a credit-line customer by id.
+      parameters:
+      - name: customer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Customer details.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recovery/loan/{transaction_id}:
+    post:
+      operationId: uploadTransaction
+      tags:
+      - Credit Line
+      summary: Upload a transaction
+      description: Upload credit-line transaction data for a transaction id.
+      parameters:
+      - name: transaction_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/CompanyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Transaction created.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Credgenics error envelope. Validation errors carry field-level messages under output.errors.
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+        output:
+          type: object
+          properties:
+            errors:
+              type: object
+              additionalProperties:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication failure (session expired or invalid credentials).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Route or resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    CompanyId:
+      name: company_id
+      in: query
+      required: true
+      description: Tenant company identifier, required on every resource request.
+      schema:
+        type: string
+  securitySchemes:
+    authenticationToken:
+      type: apiKey
+      in: header
+      name: authenticationtoken
+      description: Short-lived API token obtained from POST /user/public/access-token. Supplied on every resource request.
