@@ -1,0 +1,58 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.credgenics.com/#getting-started
+authentication:
+  style: apiKey-header
+  header: authenticationtoken
+  token_model: client-credentials-exchange (POST /user/public/access-token)
+  see: authentication/credgenics-authentication.yml
+tenancy:
+  parameter: company_id
+  location: query
+  required: true
+  note: Every resource request must carry the caller's company_id.
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header or documented idempotency contract was found in
+    the public developer documentation as of 2026-07-18.
+pagination:
+  documented: false
+versioning:
+  scheme: uri-path
+  current: v1
+  example: /recovery/v1/loans/{loan_id}
+  note: Not all endpoints are versioned (e.g. /recovery/payments/, /recovery/loan/).
+  see: lifecycle/credgenics-lifecycle.yml
+response_shaping:
+  description: >-
+    GET responses are shaped by query flags rather than sparse-field syntax.
+  params:
+  - name: attribute_levels
+    effect: Controls which data sections are returned.
+  - name: data_type_conversion
+    effect: Converts values to proper types (boolean/int/float).
+  - name: audit_info
+    effect: Include created/updated metadata.
+  - name: nested_audit_info
+    effect: Audit metadata inside nested objects.
+  - name: id_info
+    effect: Include internal system identifiers.
+error_envelope:
+  shape:
+    message: string
+    success: boolean
+    output:
+      errors: 'object (field_name -> message)'
+  example_validation:
+    message: Data Validation Failed
+    output:
+      errors:
+        field_name: error message
+    success: false
+  example_auth:
+    message: Session expired, please login again
+  see: errors/credgenics-problem-types.yml
+content_type: application/json
+rate_limit_signaling:
+  documented: false

@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/credgenics-recovery-openapi.yml + https://docs.credgenics.com/
+entities:
+- name: Company
+  key: company_id
+  note: Tenant. Required query parameter on every resource request.
+- name: Loan
+  key: loan_id
+  note: >-
+    Core lending object. Returns applicant, loan_variables, allocation_variables
+    (outstanding, DPD, penalties), loan_statuses, allocation_statuses, payments,
+    tags.
+- name: Applicant
+  note: Borrower personal details nested within a Loan.
+- name: Payment
+  note: Payment/transaction records against a Loan, with recovery-amount bifurcation.
+- name: Customer
+  key: customer_id
+  note: Credit-line customer object.
+- name: Transaction
+  key: transaction_id
+  note: Credit-line transaction object.
+relationships:
+- from: Loan
+  to: Company
+  type: belongs_to
+  via: company_id
+- from: Loan
+  to: Applicant
+  type: has_one
+- from: Loan
+  to: Payment
+  type: has_many
+- from: Customer
+  to: Company
+  type: belongs_to
+  via: company_id
+- from: Transaction
+  to: Customer
+  type: belongs_to
+  via: company_id
+notes: >-
+  Derived from documented response shapes and path parameters; nested field
+  schemas are not fully published so relationships are captured at the object
+  level.

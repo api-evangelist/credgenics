@@ -1,0 +1,30 @@
+# Credgenics
+
+> Credgenics is an AI-powered SaaS platform for debt collection and loan
+> recovery, used by banks, NBFCs, housing-finance and microfinance lenders and
+> fintechs (primarily in India). Its REST Recovery API lets lenders push loan,
+> customer, payment and transaction data in and read collections status back,
+> alongside communication, dialer, field-collection, litigation and payment
+> products.
+
+## APIs
+- [Recovery API docs](https://docs.credgenics.com/#getting-started): Lending and Credit Line REST API. Base URL https://apiprod.credgenics.com. Token auth via the `authenticationtoken` header; `company_id` query parameter required on every request.
+
+## Specs
+- [OpenAPI (generated from docs)](openapi/credgenics-recovery-openapi.yml): the documented Lending, Credit Line and access-token operations.
+- [Authentication profile](authentication/credgenics-authentication.yml)
+- [Conventions](conventions/credgenics-conventions.yml)
+- [Error catalog](errors/credgenics-problem-types.yml)
+- [Data model](data-model/credgenics-data-model.yml)
+- [Webhooks surface](asyncapi/credgenics-webhooks.yml)
+- [MCP candidate tools](mcp/credgenics-mcp.yml)
+- [Agent skill: loan collections sync](skills/credgenics-loan-collections-sync.md)
+
+## Docs
+- [Developer documentation](https://docs.credgenics.com/)
+- [Company website](https://www.credgenics.com/)
+- [Security](https://www.credgenics.com/security)
+- [Blog](https://blog.credgenics.com/)
+- [Login](https://app.credgenics.com/login)
+- [Terms of Use](https://www.credgenics.com/terms-of-use)
+- [Privacy Policy](https://www.credgenics.com/privacy-policy)

@@ -1,22 +1,80 @@
 aid: credgenics
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/credgenics.png
 name: Credgenics
-description: 'Credgenics is a company surfaced as a portfolio company of accel and added to the API Evangelist
-  network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Credgenics is an AI-powered debt collection and loan recovery SaaS platform
+  used by banks, NBFCs, housing-finance companies, microfinance institutions,
+  fintechs and asset-reconstruction companies (primarily in India). Its REST
+  Recovery API lets lenders push loan, customer, payment and transaction data
+  into the platform and read collections status, DPD and penalties back,
+  alongside digital communications, a GenAI voicebot (Swara), predictive
+  dialing (DialNext), field collections (CG Collect), litigation management,
+  online dispute resolution and the Billzy loan-repayment payments product.
+  Authentication is a client-credentials exchange returning a short-lived
+  `authenticationtoken`; every request carries the tenant `company_id`.
 url: https://raw.githubusercontent.com/api-evangelist/credgenics/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - accel
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: has-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Enterprise
-apis: []
+- Financial Services
+- Debt Collection
+- Loan Recovery
+- Lending
+- Collections
+- Fintech
+- India
+apis:
+- aid: credgenics:credgenics-authentication-api
+  name: Credgenics Authentication API
+  description: Client-credentials access-token exchange.
+  humanURL: https://docs.credgenics.com/#getting-started
+  baseURL: https://apiprod.credgenics.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/credgenics-authentication-api-openapi.yml
+- aid: credgenics:credgenics-credit-line-api
+  name: Credgenics Credit Line API
+  description: Customer and transaction ingestion for credit-line products.
+  humanURL: https://docs.credgenics.com/#getting-started
+  baseURL: https://apiprod.credgenics.com
+  tags:
+  - Credit Line
+  properties:
+  - type: OpenAPI
+    url: openapi/credgenics-credit-line-api-openapi.yml
+- aid: credgenics:credgenics-lending-api
+  name: Credgenics Lending API
+  description: Loan and payment ingestion and retrieval.
+  humanURL: https://docs.credgenics.com/#getting-started
+  baseURL: https://apiprod.credgenics.com
+  tags:
+  - Lending
+  properties:
+  - type: OpenAPI
+    url: openapi/credgenics-lending-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +83,58 @@ maintainers:
 common:
 - type: Website
   url: https://www.credgenics.com/
+- type: DeveloperPortal
+  url: https://docs.credgenics.com/
+- type: Documentation
+  url: https://docs.credgenics.com/
+- type: APIReference
+  url: https://docs.credgenics.com/#getting-started
+- type: GettingStarted
+  url: https://docs.credgenics.com/#getting-started
+- type: Blog
+  url: https://blog.credgenics.com/
+- type: Login
+  url: https://app.credgenics.com/login
+- type: TermsOfService
+  url: https://www.credgenics.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.credgenics.com/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/credgenics
+- type: Compliance
+  url: https://www.credgenics.com/security
+- type: TrustCenter
+  url: security/credgenics-trust-center.yml
+- type: Authentication
+  url: authentication/credgenics-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/credgenics-agentic-access.yml
+- type: DomainSecurity
+  url: security/credgenics-domain-security.yml
+- type: Conventions
+  url: conventions/credgenics-conventions.yml
+- type: ErrorCatalog
+  url: errors/credgenics-problem-types.yml
+- type: WellKnown
+  url: well-known/credgenics-well-known.yml
+- type: Lifecycle
+  url: lifecycle/credgenics-lifecycle.yml
+- type: Conformance
+  url: conformance/credgenics-conformance.yml
+- type: Webhooks
+  url: asyncapi/credgenics-webhooks.yml
+- type: MCPServer
+  url: mcp/credgenics-mcp.yml
+- type: LLMsTxt
+  url: llms/credgenics-llms.txt
+- type: DataModel
+  url: data-model/credgenics-data-model.yml
+- type: Overlay
+  url: overlays/credgenics-recovery-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

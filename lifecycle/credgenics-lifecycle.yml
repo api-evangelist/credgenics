@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.credgenics.com/#getting-started
+versioning:
+  scheme: uri-path
+  current: v1
+  example: /recovery/v1/loans/{loan_id}
+  note: >-
+    Lending and Credit Line read/write endpoints use a /v1/ path segment; some
+    endpoints (payments, transaction upload) are unversioned.
+  docs: https://docs.credgenics.com/#getting-started
+credentials:
+  token_expiry_default_seconds: 900
+  token_expiry_max_seconds: 86400
+  client_secret_validity: 6 months
+deprecation:
+  policy_documented: false
+  sunset_header: unknown
+sla:
+  documented: false
+status_page:
+  found: false
+  note: No public status page discovered as of 2026-07-18.
+deprecated_operations: []

@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.credgenics.com/#errors
+format: custom-envelope
+envelope:
+  fields:
+    message: Human-readable error message.
+    success: Boolean success flag (false on error).
+    output.errors: Map of field_name -> validation message (on 400 validation errors).
+  note: >-
+    Credgenics does not use RFC 9457 application/problem+json; errors return a
+    custom JSON envelope with `message`, `success`, and (for validation) an
+    `output.errors` map.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid payload or field-level validation failure.
+  envelope_example:
+    message: Data Validation Failed
+    output:
+      errors:
+        field_name: error message
+    success: false
+  source_operation: openapi/credgenics-recovery-openapi.yml#uploadLoan
+- status: 401
+  title: Unauthorized
+  meaning: Authentication failure — session expired or invalid credentials.
+  envelope_example:
+    message: Session expired, please login again
+  source_operation: openapi/credgenics-recovery-openapi.yml#getLoan
+- status: 404
+  title: Not Found
+  meaning: Route or resource (e.g. loan id) does not exist.
+  source_operation: openapi/credgenics-recovery-openapi.yml#getLoan
+- status: 500
+  title: Internal Server Error
+  meaning: Unhandled server-side exception.
+success_statuses:
+- status: 200
+  meaning: Successful GET / PATCH.
+- status: 201
+  meaning: Successful POST (resource created).

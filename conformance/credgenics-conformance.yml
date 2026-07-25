@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.credgenics.com/security + https://docs.credgenics.com/
+standards:
+- id: pci-dss
+  conforms: true
+  evidence: PCI-compliant badge displayed on https://www.credgenics.com/security
+- id: iso-27001
+  conforms: unknown
+  evidence: >-
+    An ISO certificate logo is displayed on the security page but the specific
+    ISO standard is not named; not asserting ISO 27001 specifically.
+- id: rest
+  conforms: true
+  evidence: JSON over HTTPS, resource-oriented paths, standard HTTP verbs/status codes
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {message, success, output.errors} envelope, not application/problem+json
+- id: oauth2
+  conforms: false
+  evidence: Auth is a bespoke client-credentials exchange returning an apiKey header token, not RFC 6749 OAuth2
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key contract documented

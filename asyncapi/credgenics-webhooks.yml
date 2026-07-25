@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.credgenics.com/#webhook
+spec_type: Webhooks
+asyncapi_published: false
+webhooks:
+  documented: true
+  description: >-
+    The Credgenics developer documentation includes a Webhook section
+    ("Starting up with Webhook" and "Webhook Events") for pushing collections
+    events to a consumer endpoint. Specific event-type names, payload field
+    schemas, signature/verification and retry policy are not enumerated in the
+    public documentation as of 2026-07-18 — captured as a documented surface,
+    not fabricated into event definitions.
+  authentication: Same authenticationtoken header model as the REST API.
+related_apis:
+  universal_communication_api:
+    documented: true
+    method: POST
+    description: >-
+      Universal Communication API for borrower outreach (SMS, WhatsApp, Email,
+      IVR, chatbot channels), authenticated with the same authenticationtoken
+      header. Request body/channel parameters are not fully published.
+    docs: https://docs.credgenics.com/#universal-communication-api
+notes: >-
+  No AsyncAPI document is published. Emitting a Webhooks pointer only; the
+  asyncapi scoring family stays N/A (not penalized) absent a real event spec.

@@ -1,0 +1,7 @@
+generated: '2026-07-18'
+method: generated
+skills:
+- file: credgenics-loan-collections-sync.md
+  name: Sync a loan and record a payment in Credgenics
+  api: openapi/credgenics-recovery-openapi.yml
+  operations: [createAccessToken, uploadLoan, getLoan, updatePayment]

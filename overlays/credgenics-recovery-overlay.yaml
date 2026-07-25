@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Credgenics Recovery API
+  version: 1.0.0
+extends: openapi/credgenics-recovery-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-source: https://docs.credgenics.com/#getting-started
+    x-apievangelist-method: generated-from-docs
+    x-apievangelist-industry: financial-services-collections
+- target: $.info
+  update:
+    x-tenancy:
+      parameter: company_id
+      location: query
+      required: true
+- target: $.components.securitySchemes.authenticationToken
+  update:
+    x-token-endpoint: https://apiprod.credgenics.com/user/public/access-token
+    x-token-grant: client_credentials
+    x-token-expiry-default-seconds: 900
+    x-token-expiry-max-seconds: 86400

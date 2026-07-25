@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.credgenics.com/security
+url: https://www.credgenics.com/security
+certifications:
+- PCI DSS
+- ISO (certificate displayed; specific ISO standard not named on the page)
+security_posture:
+- Data encryption and tokenization
+- Multi-user access controls
+- Cloud-based data backup and recovery
+- Server hardening (strong protocol, key exchange and cipher)
+notes: >-
+  Credgenics publishes a security page displaying a PCI-compliant badge and an
+  ISO certificate logo (specific ISO standard not named). No standalone trust
+  portal, no named SOC 2 / FedRAMP / HIPAA claims, and no bug-bounty or
+  responsible-disclosure program were found. Further compliance detail is
+  directed to the privacy policy and contact form.
+evidence:
+- source: https://www.credgenics.com/security
+  keywords: [pci compliant, iso certificate, encryption, tokenization]

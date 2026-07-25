@@ -1,0 +1,18 @@
+{
+  "provider": "credgenics",
+  "sources": [
+    "credgenics-authentication-api-openapi.yml",
+    "credgenics-credit-line-api-openapi.yml",
+    "credgenics-lending-api-openapi.yml"
+  ],
+  "outputs": [
+    "credgenics-authentication-api-openapi.yml",
+    "credgenics-credit-line-api-openapi.yml",
+    "credgenics-lending-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
