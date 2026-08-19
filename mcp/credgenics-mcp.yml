@@ -2,10 +2,9 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/credgenics-recovery-openapi.yml
-note: >-
-  No official hosted/remote MCP server was found for Credgenics as of
-  2026-07-18. This is a candidate tool list derived one-to-one from the
-  documented REST operations, offered as a starting point for an MCP wrapper.
+note: No official hosted/remote MCP server was found for Credgenics as of 2026-07-18. This is a candidate
+  tool list derived one-to-one from the documented REST operations, offered as a starting point for an
+  MCP wrapper.
 server:
   name: credgenics
   transport: http
@@ -31,3 +30,9 @@ tools:
 - name: upload_transaction
   description: Upload credit-line transaction data.
   source_operation: openapi/credgenics-recovery-openapi.yml#uploadTransaction
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census

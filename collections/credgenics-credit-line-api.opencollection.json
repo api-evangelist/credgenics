@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Credgenics Recovery Authentication Credit Line API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authenticationtoken",
+      "value": "{{authenticationtoken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credit Line",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get customer details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apiprod.credgenics.com/recovery/v1/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant company identifier, required on every resource request."
+              }
+            ]
+          },
+          "docs": "Retrieve a credit-line customer by id."
+        },
+        {
+          "info": {
+            "name": "Upload a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apiprod.credgenics.com/recovery/loan/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant company identifier, required on every resource request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload credit-line transaction data for a transaction id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Credgenics Recovery Authentication API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authenticationtoken",
+      "value": "{{authenticationtoken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate an API access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apiprod.credgenics.com/user/public/access-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange `client_id` and `client_secret` for a short-lived `api_key`. Default token expiry is 900 seconds (15 minutes); the maximum is 86400 seconds (24 hours). The client secret is valid for 6 months from creation. The response includes the token, its expiry, and a `company_details[]` array carrying the caller's `company_id`(s)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

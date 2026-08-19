@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "031b009d-b126-48bf-9feb-370d572920ff",
+      "name": "Authentication",
+      "description": {
+        "content": "Client-credentials access-token exchange.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d396ce7f-f791-4dfd-98c2-10eb51326db7",
+          "name": "Generate an API access token",
+          "request": {
+            "name": "Generate an API access token",
+            "description": {
+              "content": "Exchange `client_id` and `client_secret` for a short-lived `api_key`. Default token expiry is 900 seconds (15 minutes); the maximum is 86400 seconds (24 hours). The client secret is valid for 6 months from creation. The response includes the token, its expiry, and a `company_details[]` array carrying the caller's `company_id`(s).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "public",
+                "access-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"token_expiry_duration\": 900\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ddcd274b-8fd2-4ba8-94d7-6b9902c23978",
+              "name": "Token issued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "public",
+                    "access-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authenticationtoken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"token_expiry_duration\": 900\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api_key\": \"string\",\n  \"client_id\": \"string\",\n  \"expiry\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44c84812-d77b-410d-b032-88dc50740139",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "public",
+                    "access-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authenticationtoken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"token_expiry_duration\": 900\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true,\n  \"output\": {\n    \"errors\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd739aaf-a579-42c4-b40e-fb10ff80f738",
+              "name": "Authentication failure (session expired or invalid credentials).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "public",
+                    "access-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authenticationtoken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"token_expiry_duration\": 900\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true,\n  \"output\": {\n    \"errors\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apiprod.credgenics.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "authenticationtoken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8d46458-ca8c-4f40-986d-a4da4cb28618",
+    "name": "Credgenics Recovery Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Credgenics debt collection and loan recovery platform. Lenders integrate loan, customer, payment and transaction data, and receive collections outcomes back. Authentication is a client-credentials exchange that returns a short-lived API token supplied in the `authenticationtoken` header; every resource request carries the tenant's `company_id` as a query parameter. This specification was generated faithfully from the public developer documentation at https://docs.credgenics.com/ — it captures the documented endpoints, headers and parameters only; request/response bodies are documented narratively and are represented here as open objects.\n\nContact Support:\n Name: Credgenics Support\n Email: support@credgenics.com",
+      "type": "text/plain"
+    }
+  }
+}

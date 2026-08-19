@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Credgenics Recovery Authentication Lending API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authenticationtoken",
+      "value": "{{authenticationtoken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lending",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get loan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apiprod.credgenics.com/recovery/v1/loans/:loan_id",
+            "params": [
+              {
+                "name": "loan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant company identifier, required on every resource request."
+              },
+              {
+                "name": "attribute_levels",
+                "value": "",
+                "type": "query",
+                "description": "Controls which data sections are returned."
+              },
+              {
+                "name": "data_type_conversion",
+                "value": "",
+                "type": "query",
+                "description": "Convert values to proper types (boolean/int/float)."
+              },
+              {
+                "name": "audit_info",
+                "value": "",
+                "type": "query",
+                "description": "Include created/updated metadata."
+              },
+              {
+                "name": "id_info",
+                "value": "",
+                "type": "query",
+                "description": "Include internal system identifiers."
+              }
+            ]
+          },
+          "docs": "Retrieve a loan by id, including applicant details, loan variables, allocation variables (outstanding, DPD, penalties), module-wise statuses, payments and tags."
+        },
+        {
+          "info": {
+            "name": "Upload a loan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apiprod.credgenics.com/recovery/v1/loan/:loan_id",
+            "params": [
+              {
+                "name": "loan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant company identifier, required on every resource request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload new loan / EMI data for a loan id."
+        },
+        {
+          "info": {
+            "name": "Update a loan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apiprod.credgenics.com/recovery/v1/loan/:loan_id",
+            "params": [
+              {
+                "name": "loan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant company identifier, required on every resource request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update loan details for a loan id."
+        },
+        {
+          "info": {
+            "name": "Update payment information",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apiprod.credgenics.com/recovery/payments/:loan_id",
+            "params": [
+              {
+                "name": "loan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant company identifier, required on every resource request."
+              },
+              {
+                "name": "allocation_month",
+                "value": "",
+                "type": "query",
+                "description": "Allocation month in \"YYYY-M-01\" format (e.g. \"2025-11-01\")."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Record a payment against a loan. Supports recovery-amount bifurcation across EMI, late fees and penalties via prefixed keys such as `recovered_expected_emi`, `recovered_late_fee` and `recovered_penalty`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
