@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Credgenics Recovery Authentication Lending API
+  title: Credgenics Recovery Lending API
   version: v1
-  description: REST API for the Credgenics debt collection and loan recovery platform. Lenders integrate loan, customer, payment and transaction data, and receive collections outcomes back. Authentication is a client-credentials exchange that returns a short-lived API token supplied in the `authenticationtoken` header; every resource request carries the tenant's `company_id` as a query parameter. This specification was generated faithfully from the public developer documentation at https://docs.credgenics.com/ — it captures the documented endpoints, headers and parameters only; request/response bodies are documented narratively and are represented here as open objects.
+  description: REST API for the Credgenics debt collection and loan recovery platform.
   contact:
     name: Credgenics Support
     email: support@credgenics.com
@@ -124,25 +124,37 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Route or resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failure (session expired or invalid credentials).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    AuditInfo:
-      name: audit_info
+    IdInfo:
+      name: id_info
       in: query
       required: false
-      description: Include created/updated metadata.
+      description: Include internal system identifiers.
       schema:
         type: boolean
     LoanId:
       name: loan_id
       in: path
       required: true
-      schema:
-        type: string
-    AttributeLevels:
-      name: attribute_levels
-      in: query
-      required: true
-      description: Controls which data sections are returned.
       schema:
         type: string
     CompanyId:
@@ -152,13 +164,20 @@ components:
       description: Tenant company identifier, required on every resource request.
       schema:
         type: string
-    IdInfo:
-      name: id_info
+    AuditInfo:
+      name: audit_info
       in: query
       required: false
-      description: Include internal system identifiers.
+      description: Include created/updated metadata.
       schema:
         type: boolean
+    AttributeLevels:
+      name: attribute_levels
+      in: query
+      required: true
+      description: Controls which data sections are returned.
+      schema:
+        type: string
     DataTypeConversion:
       name: data_type_conversion
       in: query
@@ -182,25 +201,6 @@ components:
               type: object
               additionalProperties:
                 type: string
-  responses:
-    Unauthorized:
-      description: Authentication failure (session expired or invalid credentials).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Route or resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     authenticationToken:
       type: apiKey
