@@ -50,7 +50,7 @@ modified: '2026-07-18'
 tags:
 - Company
 - Enterprise
-- Financial-Services
+- Financial Services
 - Debt Collection
 - Loan Recovery
 - Lending
@@ -67,6 +67,7 @@ tags_raw:
 - Collections
 - Fintech
 - India
+- Financial-Services
 apis:
 - aid: credgenics:credgenics-authentication-api
   name: Credgenics Authentication API

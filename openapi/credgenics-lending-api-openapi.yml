@@ -124,31 +124,19 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Route or resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failure (session expired or invalid credentials).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     IdInfo:
       name: id_info
       in: query
       required: false
       description: Include internal system identifiers.
+      schema:
+        type: boolean
+    AuditInfo:
+      name: audit_info
+      in: query
+      required: false
+      description: Include created/updated metadata.
       schema:
         type: boolean
     LoanId:
@@ -164,11 +152,11 @@ components:
       description: Tenant company identifier, required on every resource request.
       schema:
         type: string
-    AuditInfo:
-      name: audit_info
+    DataTypeConversion:
+      name: data_type_conversion
       in: query
       required: false
-      description: Include created/updated metadata.
+      description: Convert values to proper types (boolean/int/float).
       schema:
         type: boolean
     AttributeLevels:
@@ -178,13 +166,25 @@ components:
       description: Controls which data sections are returned.
       schema:
         type: string
-    DataTypeConversion:
-      name: data_type_conversion
-      in: query
-      required: false
-      description: Convert values to proper types (boolean/int/float).
-      schema:
-        type: boolean
+  responses:
+    Unauthorized:
+      description: Authentication failure (session expired or invalid credentials).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Route or resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
