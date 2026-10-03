@@ -139,10 +139,11 @@ components:
       description: Include created/updated metadata.
       schema:
         type: boolean
-    LoanId:
-      name: loan_id
-      in: path
+    AttributeLevels:
+      name: attribute_levels
+      in: query
       required: true
+      description: Controls which data sections are returned.
       schema:
         type: string
     CompanyId:
@@ -159,16 +160,15 @@ components:
       description: Convert values to proper types (boolean/int/float).
       schema:
         type: boolean
-    AttributeLevels:
-      name: attribute_levels
-      in: query
+    LoanId:
+      name: loan_id
+      in: path
       required: true
-      description: Controls which data sections are returned.
       schema:
         type: string
   responses:
-    Unauthorized:
-      description: Authentication failure (session expired or invalid credentials).
+    BadRequest:
+      description: Validation error.
       content:
         application/json:
           schema:
@@ -179,8 +179,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Validation error.
+    Unauthorized:
+      description: Authentication failure (session expired or invalid credentials).
       content:
         application/json:
           schema:
