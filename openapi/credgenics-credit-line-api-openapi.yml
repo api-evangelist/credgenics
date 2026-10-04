@@ -73,14 +73,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    CompanyId:
-      name: company_id
-      in: query
-      required: true
-      description: Tenant company identifier, required on every resource request.
-      schema:
-        type: string
   responses:
     BadRequest:
       description: Validation error.
@@ -116,6 +108,14 @@ components:
               type: object
               additionalProperties:
                 type: string
+  parameters:
+    CompanyId:
+      name: company_id
+      in: query
+      required: true
+      description: Tenant company identifier, required on every resource request.
+      schema:
+        type: string
   securitySchemes:
     authenticationToken:
       type: apiKey

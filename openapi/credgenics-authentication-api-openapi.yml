@@ -70,14 +70,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    Unauthorized:
-      description: Authentication failure (session expired or invalid credentials).
+    BadRequest:
+      description: Validation error.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Validation error.
+    Unauthorized:
+      description: Authentication failure (session expired or invalid credentials).
       content:
         application/json:
           schema:

@@ -124,48 +124,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    IdInfo:
-      name: id_info
-      in: query
-      required: false
-      description: Include internal system identifiers.
-      schema:
-        type: boolean
-    AuditInfo:
-      name: audit_info
-      in: query
-      required: false
-      description: Include created/updated metadata.
-      schema:
-        type: boolean
-    AttributeLevels:
-      name: attribute_levels
-      in: query
-      required: true
-      description: Controls which data sections are returned.
-      schema:
-        type: string
-    CompanyId:
-      name: company_id
-      in: query
-      required: true
-      description: Tenant company identifier, required on every resource request.
-      schema:
-        type: string
-    DataTypeConversion:
-      name: data_type_conversion
-      in: query
-      required: false
-      description: Convert values to proper types (boolean/int/float).
-      schema:
-        type: boolean
-    LoanId:
-      name: loan_id
-      in: path
-      required: true
-      schema:
-        type: string
   responses:
     BadRequest:
       description: Validation error.
@@ -185,6 +143,48 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    AttributeLevels:
+      name: attribute_levels
+      in: query
+      required: true
+      description: Controls which data sections are returned.
+      schema:
+        type: string
+    DataTypeConversion:
+      name: data_type_conversion
+      in: query
+      required: false
+      description: Convert values to proper types (boolean/int/float).
+      schema:
+        type: boolean
+    IdInfo:
+      name: id_info
+      in: query
+      required: false
+      description: Include internal system identifiers.
+      schema:
+        type: boolean
+    AuditInfo:
+      name: audit_info
+      in: query
+      required: false
+      description: Include created/updated metadata.
+      schema:
+        type: boolean
+    CompanyId:
+      name: company_id
+      in: query
+      required: true
+      description: Tenant company identifier, required on every resource request.
+      schema:
+        type: string
+    LoanId:
+      name: loan_id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Error:
       type: object
