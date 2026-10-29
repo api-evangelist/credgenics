@@ -64,6 +64,127 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Credgenics is a company surfaced as a portfolio company of accel and added to the API Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment pipeline.
+Credgenics is an AI-powered debt collection and loan recovery SaaS platform used by banks, NBFCs, housing-finance companies, microfinance institutions, fintechs and asset-reconstruction companies (primarily in India). Its REST Recovery API lets lenders push loan, customer, payment and transaction data into the platform and read collections status, DPD and penalties back, alongside digital communications, a GenAI voicebot (Swara), predictive dialing (DialNext), field collections (CG Collect), litigation management, online dispute resolution and the Billzy loan-repayment payments product. Authentication is a client-credentials exchange returning a short-lived `authenticationtoken`; every request carries the tenant `company_id`.
 
-Backed by: accel — https://www.credgenics.com/
+**Areas:** Company · Enterprise · Financial Services · Debt Collection · Loan Recovery · Lending · Collection · Fintech · India
+
+## Credgenics on APIs.io
+
+Everything profiled for Credgenics is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/credgenics/](https://apis.io/providers/credgenics/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [Credgenics Authentication API](https://apis.io/apis/credgenics/credgenics-authentication-api/) — Client-credentials access-token exchange.
+- [Credgenics Credit Line API](https://apis.io/apis/credgenics/credgenics-credit-line-api/) — Customer and transaction ingestion for credit-line products.
+- [Credgenics Lending API](https://apis.io/apis/credgenics/credgenics-lending-api/) — Loan and payment ingestion and retrieval.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Credgenics Webhooks](https://apis.io/asyncapis/credgenics/credgenics-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [credgenics](https://apis.io/servers/credgenics/credgenics/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Credgenics Agentic Access](https://apis.io/agentic-access/credgenics/credgenics-agentic-access/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Credgenics Recovery Authentication API](https://apis.io/collections/credgenics/open-credgenics-authentication-api/)
+- [Credgenics Recovery Authentication Credit Line API](https://apis.io/collections/credgenics/open-credgenics-credit-line-api/)
+- [Credgenics Recovery Authentication Lending API](https://apis.io/collections/credgenics/open-credgenics-lending-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Credgenics Recovery Overlay](https://apis.io/overlays/credgenics/credgenics-recovery-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Credgenics Authentication](https://apis.io/security/credgenics/credgenics-authentication/)
+- [Credgenics Domain Security](https://apis.io/security/credgenics/credgenics-domain-security/)
+- [Credgenics Trust Center](https://apis.io/security/credgenics/credgenics-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.credgenics.com/)
+- [Documentation](https://docs.credgenics.com/)
+- [Getting started](https://docs.credgenics.com/#getting-started)
+- [API reference](https://docs.credgenics.com/#getting-started)
+- [Blog](https://blog.credgenics.com/)
+- [Compliance](https://www.credgenics.com/security)
+- [Terms of service](https://www.credgenics.com/terms-of-use)
+- [Privacy policy](https://www.credgenics.com/privacy-policy)
+- [GitHub](https://github.com/credgenics)
+
+## API Evangelist rating
+
+**Kin Score 29.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 22.1 |
+| Contract governance | 18.2 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 16.1 |
+| Access clarity | 43.4 |
+
+**Agent readiness 25.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/credgenics/](https://apis.io/providers/credgenics/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Credgenics: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/credgenics/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
